@@ -1,7 +1,7 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
+import { styled, ThemeProvider, createTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-
+import { getDesignTokens } from "./theme";
 import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import Sidebar from "./components/Sidebar";
@@ -25,17 +25,20 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  const [mode, setMode] = React.useState("light");
+  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <Topbar open={open} handleDrawerOpen={handleDrawerOpen} />
-      <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
+    <ThemeProvider theme={theme}>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <Topbar open={open} handleDrawerOpen={handleDrawerOpen} />
+        <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <Typography paragraph>lorem ipsum </Typography>
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <DrawerHeader />
+          <Typography paragraph>lorem ipsum </Typography>
+        </Box>
       </Box>
-    </Box>
+    </ThemeProvider>
   );
 }

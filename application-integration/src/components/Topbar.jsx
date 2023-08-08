@@ -99,7 +99,7 @@ const Topbar = ({ open, handleDrawerOpen }) => {
 
         <Box flexGrow={1}>
           <Stack direction={"row"}>
-            {theme ? (
+            {theme.palette.mode === "light" ? (
               <IconButton color="inherit">
                 <LightModeOutlinedIcon />
               </IconButton>
