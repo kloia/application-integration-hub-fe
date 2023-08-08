@@ -6,11 +6,12 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+import App from "./App";
 import "./index.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Root />}>
+    <Route path="/" element={<App />}>
       {/* <Route path="dashboard" element={<Dashboard />} /> */}
       {/* ... etc. */}
     </Route>
