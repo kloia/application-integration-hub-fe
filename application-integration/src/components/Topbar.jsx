@@ -69,7 +69,7 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 // eslint-disable-next-line react/prop-types
-const Topbar = ({ open, handleDrawerOpen }) => {
+const Topbar = ({ open, handleDrawerOpen, setMode }) => {
   const theme = useTheme();
   return (
     <AppBar position="fixed" open={open}>
@@ -97,19 +97,32 @@ const Topbar = ({ open, handleDrawerOpen }) => {
           />
         </Search>
 
-        <Box flexGrow={1}>
-          <Stack direction={"row"}>
-            {theme.palette.mode === "light" ? (
-              <IconButton color="inherit">
-                <LightModeOutlinedIcon />
-              </IconButton>
-            ) : (
-              <IconButton color="inherit">
-                <DarkModeOutlinedIcon />
-              </IconButton>
-            )}
-          </Stack>
-        </Box>
+        <Box flexGrow={1} />
+        <Stack direction={"row"}>
+          {theme.palette.mode === "light" ? (
+            <IconButton
+              onClick={() => {
+                setMode((prevMode) =>
+                  prevMode === "light" ? "dark" : "light"
+                );
+              }}
+              color="inherit"
+            >
+              <LightModeOutlinedIcon />
+            </IconButton>
+          ) : (
+            <IconButton
+              onClick={() => {
+                setMode((prevMode) =>
+                  prevMode === "light" ? "dark" : "light"
+                );
+              }}
+              color="inherit"
+            >
+              <DarkModeOutlinedIcon />
+            </IconButton>
+          )}
+        </Stack>
       </Toolbar>
     </AppBar>
   );
