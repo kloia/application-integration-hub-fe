@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 
 const drawerWidth = 240;
 
@@ -102,6 +103,10 @@ const Topbar = ({ open, handleDrawerOpen, setMode }) => {
           {theme.palette.mode === "light" ? (
             <IconButton
               onClick={() => {
+                localStorage.setItem(
+                  "currentMode",
+                  theme.palette.mode === "dark" ? "light" : "dark"
+                );
                 setMode((prevMode) =>
                   prevMode === "light" ? "dark" : "light"
                 );
@@ -113,6 +118,10 @@ const Topbar = ({ open, handleDrawerOpen, setMode }) => {
           ) : (
             <IconButton
               onClick={() => {
+                localStorage.setItem(
+                  "currentMode",
+                  theme.palette.mode === "light" ? "dark" : "light"
+                );
                 setMode((prevMode) =>
                   prevMode === "light" ? "dark" : "light"
                 );
@@ -122,6 +131,9 @@ const Topbar = ({ open, handleDrawerOpen, setMode }) => {
               <DarkModeOutlinedIcon />
             </IconButton>
           )}
+          <IconButton color="inherit">
+            <SettingsOutlinedIcon />
+          </IconButton>
         </Stack>
       </Toolbar>
     </AppBar>

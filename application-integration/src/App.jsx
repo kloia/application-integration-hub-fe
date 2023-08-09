@@ -6,6 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
+import { Outlet } from "react-router-dom";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -25,7 +26,11 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const [mode, setMode] = React.useState("dark");
+  const [mode, setMode] = React.useState(
+    localStorage.getItem("currentMode")
+      ? localStorage.getItem("currentMode")
+      : "light"
+  );
   const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
   return (
     <ThemeProvider theme={theme}>
@@ -40,7 +45,7 @@ export default function MiniDrawer() {
 
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />
-          <Typography paragraph>lorem ipsum </Typography>
+          <Outlet />
         </Box>
       </Box>
     </ThemeProvider>

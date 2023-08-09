@@ -8,9 +8,17 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import DevicesOutlinedIcon from "@mui/icons-material/DevicesOutlined";
+import ScienceOutlinedIcon from "@mui/icons-material/ScienceOutlined";
+import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
+import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import { styled, useTheme } from "@mui/material/styles";
+import SettingsOutlined from "@mui/icons-material/SettingsOutlined";
+import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import { Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -59,12 +67,63 @@ const closedMixin = (theme) => ({
   },
 });
 
+const Array1 = [
+  {
+    text: "Dashboard",
+    icon: <HomeOutlinedIcon />,
+    path: "/",
+  },
+  {
+    text: "Web & Mobile Applications",
+    icon: <DevicesOutlinedIcon />,
+    path: "/devices",
+  },
+  {
+    text: "Synthetic Monitoring",
+    icon: <ScienceOutlinedIcon />,
+    path: "/synthetic",
+  },
+  {
+    text: "Events",
+    icon: <EventAvailableOutlinedIcon />,
+    path: "/events",
+  },
+];
+const Array2 = [
+  {
+    text: "Users",
+    icon: <PeopleOutlinedIcon />,
+    path: "/users",
+  },
+  {
+    text: "Settings",
+    icon: <SettingsOutlined />,
+    path: "/settings",
+  },
+  {
+    text: "Profile Form",
+    icon: <PersonOutlineOutlinedIcon />,
+    path: "/profile",
+  },
+
+  {
+    text: "More",
+    icon: <MoreHorizOutlinedIcon />,
+    path: "/more",
+  },
+];
+
 // eslint-disable-next-line react/prop-types
+
 export default function Sidebar({ open, handleDrawerClose }) {
   const theme = useTheme();
+  const navigate = useNavigate(); //for the navigation we use useNavigate hook
   return (
     <Drawer variant="permanent" open={open}>
       <DrawerHeader>
+        <Typography textAlign="center" fontWeight="bold">
+          Application Integration <br /> Hub
+        </Typography>
         <IconButton onClick={handleDrawerClose}>
           {theme.direction === "rtl" ? (
             <ChevronRightIcon />
@@ -75,9 +134,12 @@ export default function Sidebar({ open, handleDrawerClose }) {
       </DrawerHeader>
       <Divider />
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ display: "block" }}>
+        {Array1.map((item) => (
+          <ListItem key={item.path} disablePadding sx={{ display: "block" }}>
             <ListItemButton
+              onClick={() => {
+                navigate(item.path);
+              }}
               sx={{
                 minHeight: 48,
                 justifyContent: open ? "initial" : "center",
@@ -91,18 +153,24 @@ export default function Sidebar({ open, handleDrawerClose }) {
                   justifyContent: "center",
                 }}
               >
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {item.icon}
               </ListItemIcon>
-              <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText
+                primary={item.text}
+                sx={{ opacity: open ? 1 : 0 }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ display: "block" }}>
+        {Array2.map((item) => (
+          <ListItem key={item.path} disablePadding sx={{ display: "block" }}>
             <ListItemButton
+              onClick={() => {
+                navigate(item.path);
+              }}
               sx={{
                 minHeight: 48,
                 justifyContent: open ? "initial" : "center",
@@ -116,9 +184,12 @@ export default function Sidebar({ open, handleDrawerClose }) {
                   justifyContent: "center",
                 }}
               >
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {item.icon}
               </ListItemIcon>
-              <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText
+                primary={item.text}
+                sx={{ opacity: open ? 1 : 0 }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
