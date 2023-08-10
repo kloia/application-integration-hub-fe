@@ -18,7 +18,8 @@ import SettingsOutlined from "@mui/icons-material/SettingsOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { grey } from "@mui/material/colors";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -116,6 +117,7 @@ const Array2 = [
 // eslint-disable-next-line react/prop-types
 
 export default function Sidebar({ open, handleDrawerClose }) {
+  let location = useLocation();
   const theme = useTheme();
   const navigate = useNavigate(); //for the navigation we use useNavigate hook
   return (
@@ -137,6 +139,7 @@ export default function Sidebar({ open, handleDrawerClose }) {
         {Array1.map((item) => (
           <ListItem key={item.path} disablePadding sx={{ display: "block" }}>
             <ListItemButton
+              //we use use location hook to get the current path and compare it with the path of the item
               onClick={() => {
                 navigate(item.path);
               }}
@@ -144,6 +147,12 @@ export default function Sidebar({ open, handleDrawerClose }) {
                 minHeight: 48,
                 justifyContent: open ? "initial" : "center",
                 px: 2.5,
+                bgcolor:
+                  location.pathname === item.path
+                    ? theme.palette.mode === "dark"
+                      ? grey[800]
+                      : grey[400]
+                    : null,
               }}
             >
               <ListItemIcon
@@ -175,6 +184,12 @@ export default function Sidebar({ open, handleDrawerClose }) {
                 minHeight: 48,
                 justifyContent: open ? "initial" : "center",
                 px: 2.5,
+                bgcolor:
+                  location.pathname === item.path
+                    ? theme.palette.mode === "light"
+                      ? grey[400]
+                      : grey[800]
+                    : null,
               }}
             >
               <ListItemIcon
