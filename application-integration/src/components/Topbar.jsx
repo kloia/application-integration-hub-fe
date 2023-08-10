@@ -1,4 +1,4 @@
-import { IconButton, Toolbar } from "@mui/material";
+import { IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
 import { styled, alpha, useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import MuiAppBar from "@mui/material/AppBar";
@@ -9,6 +9,11 @@ import Stack from "@mui/material/Stack";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { useState } from "react";
+
+const settings = ["Profile", "Dashboard", "Logout"];
 
 const drawerWidth = 240;
 
@@ -71,6 +76,13 @@ const AppBar = styled(MuiAppBar, {
 
 // eslint-disable-next-line react/prop-types
 const Topbar = ({ open, handleDrawerOpen, setMode }) => {
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
   const theme = useTheme();
   return (
     <AppBar position="fixed" open={open}>
@@ -131,9 +143,38 @@ const Topbar = ({ open, handleDrawerOpen, setMode }) => {
               <DarkModeOutlinedIcon />
             </IconButton>
           )}
-          <IconButton color="inherit">
-            <SettingsOutlinedIcon />
-          </IconButton>
+
+          <Tooltip title="Open Settings">
+            <IconButton
+              color="inherit"
+              onClick={handleOpenUserMenu}
+              sx={{ p: 0 }}
+            >
+              <SettingsOutlinedIcon />
+            </IconButton>
+          </Tooltip>
+          <Menu
+            sx={{ mt: "45px" }}
+            id="menu-appbar"
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >
+            {settings.map((setting) => (
+              <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">{setting}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
         </Stack>
       </Toolbar>
     </AppBar>
