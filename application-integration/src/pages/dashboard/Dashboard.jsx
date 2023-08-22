@@ -1,5 +1,4 @@
-import "./dasboard.scss";
-
+import "./dashboard.scss";
 const dashboard = () => {
   return (
     <div className="dash">
@@ -7,7 +6,6 @@ const dashboard = () => {
       <div className="box box2">Box2</div>
       <div className="box box3">Box3</div>
       <div className="box box4">Box4</div>
-      <div className="box box5">Box5</div>
     </div>
   );
 };
