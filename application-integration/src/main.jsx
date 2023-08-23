@@ -6,6 +6,7 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+
 import Dashboard from "./pages/dashboard/Dashboard";
 import Devices from "./pages/devices/Devices";
 import Events from "./pages/events/Events";
