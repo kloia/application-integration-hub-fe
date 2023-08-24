@@ -1,19 +1,29 @@
 .dash {
   display: grid;
   gap: 20px;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+
   .box {
     padding: 20px;
     border-radius: 10px;
     border: 1px solid grey;
   }
   .box1 {
-    grid-column: span 3;
+    grid-column: span 6;
+    align-self: center;
   }
-  .box2,
-  .box3,
+  .box2 {
+    grid-row: span 2;
+    grid-column: span 2;
+  }
+  .box3 {
+    grid-row: span 2;
+    grid-column: span 2;
+  }
   .box4 {
-    grid-row: span 4;
+    grid-row: span 2;
+    grid-column: span 2;
+    align-self: center;
   }
 }

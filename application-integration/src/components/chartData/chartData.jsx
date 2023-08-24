@@ -46,7 +46,7 @@ const ChartComponent = () => {
   return (
     <div>
       <h1>History</h1>
-      <BarChart width={800} height={400} data={data}>
+      <BarChart width={350} height={300} data={data}>
         <XAxis dataKey="timestamp" />
         <YAxis />
         <Tooltip />
