@@ -1,8 +1,6 @@
-import create from "zustand";
+import { create } from "zustand";
 
-const useStore = create((set) => ({
-  data: [],
-  setData: (newData) => set({ data: newData }),
+export const useFilterStore = create((set) => ({
+  filter: "all",
+  setFilter: (filter) => set(() => ({ filter })),
 }));
-
-export default useStore;

@@ -75,7 +75,7 @@ const Array1 = [
     path: "/",
   },
   {
-    text: "Web & Mobile Applications",
+    text: "Device Applications",
     icon: <DevicesOutlinedIcon />,
     path: "/devices",
   },
