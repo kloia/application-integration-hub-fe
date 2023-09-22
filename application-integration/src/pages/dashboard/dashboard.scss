@@ -1,0 +1,16 @@
+.dash {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+
+  .box {
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid grey;
+  }
+  .box2 {
+    grid-row: span 6;
+    grid-column: span 6;
+  }
+}
